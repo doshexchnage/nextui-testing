@@ -1,22 +1,17 @@
-import { Button } from "@nextui-org/react";
-import { useEffect } from "react";
+import { Select, SelectItem } from "@nextui-org/react";
+
+const MONTHS = ["January", "February", "March", "April", "June", "July", "August", "September", "October", "November", "December"];
 
 export function MainScreen() {
-  useEffect(() => {
-    //
-  }, []);
-
   return (
     <div className="">
-      <h1>Exciting times ahead!</h1>
-      <Button
-        className="bg-blue-500"
-        onPress={() => {
-          alert("Button tested!");
-        }}
-      >
-        Test
-      </Button>
+      <Select label="Select a month of the year...">
+        {MONTHS.map((month) => (
+          <SelectItem key={month} value={month}>
+            {month}
+          </SelectItem>
+        ))}
+      </Select>
     </div>
   );
 }
