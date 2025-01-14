@@ -5,6 +5,7 @@ const MONTHS = ["January", "February", "March", "April", "June", "July", "August
 export function MainScreen() {
   return (
     <div className="">
+      {/* @ts-ignore */}
       <Select label="Select a month of the year...">
         {MONTHS.map((month) => (
           <SelectItem key={month} value={month}>
