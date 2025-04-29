@@ -17,7 +17,7 @@ module.exports = async (env, args) => {
       envPath = "./envs/dev.env";
       break;
     case "UAT":
-      isDevelopment = false;
+      // isDevelopment = false;
       envPath = "./envs/uat.env";
       break;
     case "PROD":

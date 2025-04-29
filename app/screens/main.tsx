@@ -1,17 +1,55 @@
-import { Select, SelectItem } from "@nextui-org/react";
-
-const MONTHS = ["January", "February", "March", "April", "June", "July", "August", "September", "October", "November", "December"];
+import { Button, Dropdown, DropdownItem, DropdownMenu, DropdownTrigger } from "@heroui/react";
+import { useEffect } from "react";
 
 export function MainScreen() {
+  useEffect(() => {
+    //
+  }, []);
+
+  const items = [
+    {
+      key: "new",
+      label: "New file",
+    },
+    {
+      key: "copy",
+      label: "Copy link",
+    },
+    {
+      key: "edit",
+      label: "Edit file",
+    },
+    {
+      key: "delete",
+      label: "Delete file",
+    },
+  ];
+
   return (
     <div className="">
-      <Select label="Select a month of the year...">
-        {MONTHS.map((month) => (
-          <SelectItem key={month} value={month}>
-            {month}
-          </SelectItem>
-        ))}
-      </Select>
+      <h1>Exciting times ahead!</h1>
+
+      <Button
+        className="bg-blue-500"
+        onPress={() => {
+          alert("Button tested!");
+        }}
+      >
+        Test
+      </Button>
+
+      <Dropdown isDisabled={false}>
+        <DropdownTrigger>
+          <Button variant="bordered">Open Menu</Button>
+        </DropdownTrigger>
+        <DropdownMenu aria-label="Dynamic Actions" items={items}>
+          {(item) => (
+            <DropdownItem key={item.key} className={item.key === "delete" ? "text-danger" : ""} color={item.key === "delete" ? "danger" : "default"}>
+              {item.label}
+            </DropdownItem>
+          )}
+        </DropdownMenu>
+      </Dropdown>
     </div>
   );
 }
