@@ -1,5 +1,17 @@
-import { Button, Dropdown, DropdownItem, DropdownMenu, DropdownTrigger } from "@heroui/react";
-import { useEffect } from "react";
+import {
+  Button,
+  Dropdown,
+  DropdownItem,
+  DropdownMenu,
+  DropdownTrigger,
+  Modal,
+  ModalBody,
+  ModalContent,
+  ModalFooter,
+  ModalHeader,
+  Tooltip,
+} from "@heroui/react";
+import { useEffect, useState } from "react";
 
 export function MainScreen() {
   useEffect(() => {
@@ -25,8 +37,10 @@ export function MainScreen() {
     },
   ];
 
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
-    <div className="">
+    <div className="flex flex-col gap-2 p-4">
       <h1>Exciting times ahead!</h1>
 
       <Button
@@ -35,12 +49,12 @@ export function MainScreen() {
           alert("Button tested!");
         }}
       >
-        Test
+        Alert
       </Button>
 
-      <Dropdown isDisabled={false}>
+      <Dropdown disableAnimation={false}>
         <DropdownTrigger>
-          <Button variant="bordered">Open Menu</Button>
+          <Button variant="bordered">Open Dropdown</Button>
         </DropdownTrigger>
         <DropdownMenu aria-label="Dynamic Actions" items={items}>
           {(item) => (
@@ -50,6 +64,47 @@ export function MainScreen() {
           )}
         </DropdownMenu>
       </Dropdown>
+
+      <Tooltip content="Bold" showArrow={true} disableAnimation={false}>
+        <Button size="sm">Toolip</Button>
+      </Tooltip>
+
+      <Button
+        size="md"
+        onPress={() => {
+          setIsOpen(true);
+        }}
+      >
+        Open Modal
+      </Button>
+      <Modal
+        isOpen={isOpen}
+        disableAnimation={false}
+        onOpenChange={(isOpen: boolean) => {
+          if (!isOpen) {
+            setIsOpen(false);
+          }
+        }}
+      >
+        <ModalContent>
+          {(onClose) => (
+            <>
+              <ModalHeader className="flex flex-col gap-1">Header</ModalHeader>
+              <ModalBody>Body</ModalBody>
+              <ModalFooter>
+                <Button
+                  variant="bordered"
+                  onPress={() => {
+                    setIsOpen(false);
+                  }}
+                >
+                  Close
+                </Button>
+              </ModalFooter>
+            </>
+          )}
+        </ModalContent>
+      </Modal>
     </div>
   );
 }
